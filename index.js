@@ -15,8 +15,8 @@
         me = {};
 
     include.call(me, require.fsPath + 'lib/coffee-script.js');
-    include.path.push('./coffeescript');
-    require.path.push('./coffeescript');
+    include.paths.push('./coffeescript');
+    require.paths.push('./coffeescript');
     require.extensions.coffee = include.extensions.coffee = function(fn) {
         return rhino.runScript(me.CoffeeScript.compile(new File(fn).readAll(), { bare: true }), fn, 1, this);
     };
