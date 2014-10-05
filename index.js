@@ -10,15 +10,14 @@
 (function() {
     "use strict";
 
-    var File = require('File'),
-        rhino = require('builtin/rhino'),
+    var rhino = require('builtin/rhino'),
         me = {};
 
     include.call(me, require.fsPath + 'lib/coffee-script-1.8.0.js');
     include.paths.push('./coffeescript');
     require.paths.push('./coffeescript');
-    require.extensions.coffee = include.extensions.coffee = function(fn) {
-        return rhino.runScript(me.CoffeeScript.compile(new File(fn).readAll(), { bare: true }), fn, 1, this);
+    require.extensions.coffee = include.extensions.coffee = function(source, filename) {
+        return rhino.runScript(me.CoffeeScript.compile(source, { bare: true }), filename, 1, this);
     };
     exports.CoffeeScript = me.CoffeeScript;
 
