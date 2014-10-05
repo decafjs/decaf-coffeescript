@@ -14,7 +14,7 @@
         rhino = require('builtin/rhino'),
         me = {};
 
-    include.call(me, require.fsPath + 'lib/coffee-script.js');
+    include.call(me, require.fsPath + 'lib/coffee-script-1.8.0.js');
     include.paths.push('./coffeescript');
     require.paths.push('./coffeescript');
     require.extensions.coffee = include.extensions.coffee = function(fn) {
