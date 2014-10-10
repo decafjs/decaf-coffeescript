@@ -17,6 +17,8 @@
     include.paths.push('./coffeescript');
     require.paths.push('./coffeescript');
     require.extensions.coffee = include.extensions.coffee = function(source, filename) {
+        // TODO investigate whteher runScript is necessary.
+        // it looks like builtin require() does a runScript() too.
         return rhino.runScript(me.CoffeeScript.compile(source, { bare: true }), filename, 1, this);
     };
     exports.CoffeeScript = me.CoffeeScript;
